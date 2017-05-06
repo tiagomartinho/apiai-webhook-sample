@@ -2,43 +2,19 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-
-
 const restService = express();
 restService.use(bodyParser.json());
 
+var state = false;
+
 restService.post('/hook', function (req, res) {
-
-    console.log('hook request');
-
     try {
-        var speech = 'empty speech';
-
-        if (req.body) {
-            var requestBody = req.body;
-
-            if (requestBody.result) {
-                speech = '';
-
-                if (requestBody.result.fulfillment) {
-                    speech += requestBody.result.fulfillment.speech;
-                    speech += ' ';
-                }
-
-                if (requestBody.result.action) {
-                    speech += 'action: ' + requestBody.result.action;
-                }
-            }
-        }
-
-        console.log('result: ', speech);
-
+        state = !state;
         return res.json({
-            source: 'apiai-webhook-sample'
+          state: state,
+          source: 'apiai-webhook-sample'
         });
     } catch (err) {
-        console.error("Can't process request", err);
-
         return res.status(400).json({
             status: {
                 code: 400,
@@ -46,6 +22,12 @@ restService.post('/hook', function (req, res) {
             }
         });
     }
+});
+
+restService.get('/state', function (req, res) {
+  return res.json({
+      state: state
+  });
 });
 
 restService.listen((process.env.PORT || 5000), function () {
