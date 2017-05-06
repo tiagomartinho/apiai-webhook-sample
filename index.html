@@ -1,0 +1,21 @@
+<h1 id="demo"> Hello world! </h1>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    (function poll() {
+        $.ajax({
+            url: "/state",
+            type: "GET",
+            success: function(data) {
+                console.log(data);
+                document.getElementById("demo").innerHTML = 'changed state to: ' + data.state;
+            },
+            dataType: "json",
+            complete: setTimeout(function() {
+                poll()
+            }, 1000),
+            timeout: 2000
+        })
+    })();
+</script>

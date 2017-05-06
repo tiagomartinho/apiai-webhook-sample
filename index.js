@@ -2,6 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+var path = require("path");
 const restService = express();
 restService.use(bodyParser.json());
 
@@ -30,6 +31,10 @@ restService.get('/state', function (req, res) {
   return res.json({
       state: state
   });
+});
+
+restService.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 restService.listen((process.env.PORT || 5000), function () {
