@@ -10,9 +10,10 @@ var state = false;
 restService.post('/hook', function (req, res) {
     try {
         state = !state;
+        var onOff = state ? 'on' : 'off';
         return res.json({
-          speech: 'Allright, I turned on the water',
-          displayText: 'Allright, I turned on the water',
+          speech: 'Allright, I turned ' + onOff + ' the water',
+          displayText: 'Allright, I turned ' + onOff + ' the water',
           source: 'apiai-webhook-sample'
         });
     } catch (err) {
