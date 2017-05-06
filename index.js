@@ -11,7 +11,8 @@ restService.post('/hook', function (req, res) {
     try {
         state = !state;
         return res.json({
-          state: state,
+          speech: 'Allright, I turned on the water',
+          displayText: 'Allright, I turned on the water',
           source: 'apiai-webhook-sample'
         });
     } catch (err) {
