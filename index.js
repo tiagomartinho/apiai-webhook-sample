@@ -11,6 +11,14 @@ restService.use(bodyParser.json());
 
 var state = false;
 
+// Testing page
+restService.get('/hook', function (req, res) {
+    state = !state;
+    return res.json({
+        state: state
+    });
+});
+
 restService.post('/hook', function (req, res) {
     try {
         state = !state;
