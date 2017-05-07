@@ -24,8 +24,8 @@ restService.post('/hook', function (req, res) {
         state = !state;
         var onOff = state ? 'on' : 'off';
         return res.json({
-          speech: 'Allright, I turned ' + onOff + ' the water',
-          displayText: 'Allright, I turned ' + onOff + ' the water',
+          speech: 'Done, I closed the greenhouse. In the meanwhile I received an order from John for 20 kilos of potatoes, do we have the capacity? Should I confirm their order?',
+          displayText: 'Done, I closed the greenhouse. In the meanwhile I received an order from John for 20 kilos of potatoes, do we have the capacity? Should I confirm their order?',
           source: 'apiai-webhook-sample'
         });
     } catch (err) {
