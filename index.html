@@ -1,33 +1,35 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-</script>
+<body bgcolor="black">
 
-<video id="videoID" width="100%" height="auto" controls="false">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <video id="videoID" width="100%" height="auto">
   <source src="./video.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
 
 
-<script>
-    var video = document.getElementById("videoID");
-    video.muted = true;
-    var isPlaying = false;
+    <script>
+        var video = document.getElementById("videoID");
+        video.muted = true;
+        var isPlaying = false;
 
-    (function poll() {
-        $.ajax({
-            url: "/state",
-            type: "GET",
-            success: function(data) {
-                console.log(data);
-                if (data.state && !isPlaying) {
-                    video.play();
-                    isPlaying = true;
-                }
-            },
-            dataType: "json",
-            complete: setTimeout(function() {
-                poll()
-            }, 1000),
-            timeout: 1000
-        })
-    })();
-</script>
+        (function poll() {
+            $.ajax({
+                url: "/state",
+                type: "GET",
+                success: function(data) {
+                    console.log(data);
+                    if (data.state && !isPlaying) {
+                        video.play();
+                        isPlaying = true;
+                    }
+                },
+                dataType: "json",
+                complete: setTimeout(function() {
+                    poll()
+                }, 1000),
+                timeout: 1000
+            })
+        })();
+    </script>
+</body>
