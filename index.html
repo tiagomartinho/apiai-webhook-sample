@@ -1,8 +1,7 @@
-<h1 id="demo"> Hello world! </h1>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<video id="videoID" width="400" controls>
+<video id="videoID" width="100%" height="auto" controls="false">
   <source src="./video.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
@@ -10,8 +9,8 @@
 
 <script>
     var video = document.getElementById("videoID");
-    video.playbackRate = 3;
     video.muted = true;
+    var isPlaying = false;
 
     (function poll() {
         $.ajax({
@@ -19,9 +18,10 @@
             type: "GET",
             success: function(data) {
                 console.log(data);
-                document.getElementById("demo").innerHTML = 'changed state to: ' + data.state;
-                if (data.state)
+                if (data.state && !isPlaying) {
                     video.play();
+                    isPlaying = true;
+                }
             },
             dataType: "json",
             complete: setTimeout(function() {
