@@ -22,7 +22,6 @@ restService.get('/hook', function (req, res) {
 restService.post('/hook', function (req, res) {
     try {
         state = !state;
-        var onOff = state ? 'on' : 'off';
         return res.json({
           speech: 'Done, I closed the greenhouse. Oh, I just received an order from John Doe for 20 kilos of potatoes, should I confirm the order?',
           displayText: 'Done, I closed the greenhouse. Oh, I just received an order from John Doe for 20 kilos of potatoes, should I confirm the order?',
